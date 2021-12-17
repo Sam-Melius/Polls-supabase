@@ -37,14 +37,15 @@ main {
     justify-content: center;
     align-items: center;
     margin-bottom: calc(var(--footer-height));
+    width: 100%;
 }
 
 section {
     background-color: var(--color5);
-    max-width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding-top: var(--gutter);
     padding-bottom: var(--gutter);
@@ -89,3 +90,41 @@ footer {
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
+
+form label {
+    display: block;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.top .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.past-polls {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.past-polls .poll {
+    display: flex;
+    background-color: slateblue;
+    margin: 10px;
+}
+
