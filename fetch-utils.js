@@ -33,6 +33,19 @@ export async function signUp(realEmail, realPassword) {
     return response.user;
 }
 
+export async function signIn(realEmail, realPassword) {
+    console.log(client.auth.user());
+
+    const response = await client.auth.signIn({
+        email: realEmail,
+        password: realPassword,
+    });
+
+    console.log(client.auth.user());
+
+    return response.user;
+}
+
 export async function savePoll(question, option1, option2, votes1, votes2) {
     const response = await client
         .from('polls')

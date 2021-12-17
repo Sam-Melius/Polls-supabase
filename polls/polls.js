@@ -23,7 +23,7 @@ let option2Title = '';
 let option2Votes = 0;
 
 window.addEventListener('load', async() => {
-    await displayPolls();
+    await displayAllPolls();
 });
 
 logoutButtonEl.addEventListener('click', async() => {
@@ -35,17 +35,7 @@ pollFormEl.addEventListener('submit', (e) => {
 
     const data = new FormData(pollFormEl);
 
-    question = data.get('question');
-    option1Title = data.get('option-1-title');
-    option1Votes = data.get('option-1-votes');
-    option2Title = data.get('option-2-title');
-    option2Votes = data.get('option-1-votes');
-
-    questionEl.textContent = question;
-    option1TitleEl.textContent = option1Title;
-    option1VotesEl.textContent = option1Votes;
-    option2TitleEl.textContent = option2Title;
-    option2VotesEl.textContent = option2Votes;
+    displayCurrentPoll(data);
 
     pollFormEl.reset();
 });
@@ -65,10 +55,24 @@ option2ButtonEl.addEventListener('click', () => {
 finishButtonEl.addEventListener('click', async() => {
     await savePoll(question, option1Title, option2Title, option1Votes, option2Votes);
 
-    displayPolls();
+    displayAllPolls();
 });
 
-async function displayPolls() {
+function displayCurrentPoll(data) {
+    question = data.get('question');
+    option1Title = data.get('option-1-title');
+    option1Votes = data.get('option-1-votes');
+    option2Title = data.get('option-2-title');
+    option2Votes = data.get('option-1-votes');
+
+    questionEl.textContent = question;
+    option1TitleEl.textContent = option1Title;
+    option1VotesEl.textContent = option1Votes;
+    option2TitleEl.textContent = option2Title;
+    option2VotesEl.textContent = option2Votes;
+}
+
+async function displayAllPolls() {
     const polls = await getPolls();
 
     pastPollsEl.textContent = '';
@@ -77,4 +81,5 @@ async function displayPolls() {
 
         pastPollsEl.append(newPollEl);
     }
+    
 }
