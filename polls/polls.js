@@ -56,6 +56,11 @@ finishButtonEl.addEventListener('click', async() => {
     await savePoll(question, option1Title, option2Title, option1Votes, option2Votes);
 
     displayAllPolls();
+    questionEl.textContent = '';
+    option1TitleEl.textContent = '';
+    option1VotesEl.textContent = 0;
+    option2TitleEl.textContent = '';
+    option2VotesEl.textContent = 0;
 });
 
 function displayCurrentPoll(data) {
@@ -76,6 +81,7 @@ async function displayAllPolls() {
     const polls = await getPolls();
 
     pastPollsEl.textContent = '';
+    
     for (let poll of polls) {
         const newPollEl = renderPoll(poll);
 
